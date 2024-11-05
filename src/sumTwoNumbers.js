@@ -5,5 +5,19 @@
  * @returns {number}
  */
 module.exports.sumTwoNumbers = function sumTwoNumbers(firstNumber, secondNumber) {
-  throw new Error('Not implemented');
+  let firstParsed = convertToNumber(firstNumber);
+  let secParsed = convertToNumber(secondNumber);
+
+  if (firstParsed === -secParsed) {
+    return 0;
+  }
+  return firstParsed + secParsed;
+};
+
+let convertToNumber = value => {
+  if (typeof value !== 'number') {
+    let res = value.replaceAll(' ', '');
+    return res * 1;
+  }
+  return value;
 };
