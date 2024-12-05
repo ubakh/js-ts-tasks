@@ -8,5 +8,19 @@
  * @returns {Array<number>}
  */
 module.exports.replacement = function replacement(arr) {
-  throw new Error('Not implemented'); // remove me and write a solution
+  return arr.map(num => {
+    const positive = Math.abs(num);
+    const digitCount = positive.toString().length;
+
+    switch (digitCount) {
+      case 1:
+        return 1;
+      case 2:
+        return 2;
+      case 3:
+        return 3;
+      default:
+        return 4;
+    }
+  });
 };

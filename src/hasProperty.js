@@ -5,5 +5,9 @@
  * @returns {boolean}
  */
 module.exports.hasProperty = function hasProperty(object, prop) {
-  throw new Error('Not implemented'); // remove me and write a solution
+  let hasProp = prop in object;
+  if (!hasProp) {
+    return object.hasOwnProperty(prop);
+  }
+  return hasProp;
 };
