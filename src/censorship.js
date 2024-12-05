@@ -14,5 +14,11 @@
  * @returns {function}
  */
 module.exports.censorship = function censorship(forbidden) {
-  throw new Error('Not implemented'); // remove me and write a solution
+  if (forbidden.length === 0) return;
+  return function (inputData) {
+    forbidden.forEach(value => {
+      inputData = inputData.replaceAll(value, '*'.repeat(value.length));
+    });
+    return inputData;
+  };
 };
