@@ -9,5 +9,11 @@
  * @returns {function}
  */
 module.exports.sort = function sort(TestUtils) {
-  throw new Error('Not implemented'); // remove this line and create your solution
+  return function sortValue(...values) {
+    return values.sort((firstElem, secondElem) => {
+      // why complain that there are no arg in a function
+      // actual implementation is: sortComparator: function (a, b)
+      return TestUtils.sortComparator(firstElem, secondElem);
+    });
+  };
 };

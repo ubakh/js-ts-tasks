@@ -13,5 +13,33 @@
  * @returns {function}
  */
 module.exports.palindrome = function palindrome(TestUtils) {
-  throw new Error('Not implemented'); // remove this line and create your solution
+  return function (str) {
+    function isAlphanumeric(elem) {
+      return !(
+        !(elem > 47 && elem < 58) && // numeric (0-9)
+        !(elem > 64 && elem < 91) && // upper alpha (A-Z)
+        !(elem > 96 && elem < 123)
+      );
+    }
+    this.str = str
+      .split('')
+      .map(elem => {
+        if (isAlphanumeric(elem.charCodeAt(0))) {
+          return elem;
+        }
+        return null;
+      })
+      .map(value => {
+        if (value === value + ''.toUpperCase()) {
+          return value.toLowerCase();
+        }
+      })
+      .filter(elem => {
+        return elem != null || elem === 'null';
+      })
+      .join('')
+      .toString()
+      .replaceAll('null', '');
+    return TestUtils.isPalindrome.call(this);
+  };
 };
