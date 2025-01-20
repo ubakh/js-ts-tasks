@@ -6,5 +6,37 @@
  * @returns {boolean}
  */
 module.exports.pangram = function (word: string | number): boolean {
-  throw new Error('Not implemented'); // delete this line and write your code
+  let value = word;
+
+  console.log('value' + value);
+  function fillNumArray() {
+    return Array.from(Array(10).keys()).map(e => String(e));
+  }
+  function checkNumber(value: string) {
+    let allNumbers = fillNumArray();
+    let givenArr = value.split('');
+
+    for (const elem of allNumbers) {
+      if (!givenArr.includes(elem)) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  if (typeof word === 'number') {
+    return checkNumber(String(value));
+  }
+
+  function checkWord(value: string) {
+    let givenArr: string[] = value.split('');
+    let alphabet: string[] = [...'abcdefghijklmnopqrstuvwxyz'];
+    for (const allLettersValue of alphabet) {
+      if (!givenArr.includes(allLettersValue)) {
+        return false;
+      }
+    }
+    return true;
+  }
+  return checkWord(String(value).toLowerCase());
 };
