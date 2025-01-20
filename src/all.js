@@ -4,5 +4,23 @@
  * @returns Promise
  */
 module.exports.all = function all(promisesArray) {
-  throw new Error('Not implemented'); // remove me and write your code
+  return new Promise((resolve, rej) => {
+    let resCollection = [];
+    let resolved = 0;
+
+    promisesArray.forEach((promise, ind) => {
+      Promise.resolve(promise)
+        .then(returnValue => {
+          resCollection.splice(ind, 0, returnValue);
+          resolved++;
+
+          if (resolved === promisesArray.length) {
+            resolve(resCollection);
+          }
+        })
+        .catch(err => {
+          rej(err);
+        });
+    });
+  });
 };
